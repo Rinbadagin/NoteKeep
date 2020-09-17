@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>NoteKeep V1.01</title>
+     <!--
+          CSS and JS file linking, all in local directory.
+     -->
+     <link rel="stylesheet" href="style.css" type="text/css">
+     <script src="script.js"></script>
+     <script src="Note.js"></script>
+     <script src="DecryptedNote.js"></script>
+     <link rel="icon" type="image/png" href="favicon.png">
+     <!--
+          Imports of AES encryption library (directly below) and google fonts font VT323
+     -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha512.js"></script>
+     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+     <!--Header and navbar-->
+     <h1>NoteKeep [V1.01] (12/09/2020) : Written by Finn Robinson</h1><break></break>
+     <span>
+          <input type="button" value="ADD NOTES" onclick="setPage(0);"/>
+          <input type="button" value="VIEW NOTES" onclick="setPage(1);"/>
+          <input type="button" value="CREDITS/INFO" onclick="setPage(2);"/>
+     </span>
+     <break>═══════════════════════</break>
+     <!--Space for the definition of each page/tab-->
+     <div class="page">
+          <h1>Add Note</h1>
+          <form id="noteInput">
+               <span>
+                    <p>Note Title: <input placeholder="Lorem ipsum"/></p>
+                    <p>Password: <input type="password" placeholder="dolor sit amet,"/></p>
+                    <p>Confirmation: <input type="password" placeholder="consectetur adipisci-"/></p>
+                    <break>═══</break>
+                    <p>Contents:<break/><textarea rows="8" placeholder="-ng elit,sed do eiusmod tempor incididunt ut labore 
+                         et dolore magna aliqua."></textarea></p>
+               </span>
+          </form>
+          <input type="button" value="SUBMIT" onclick="submitNote();"/>
+     </div>
+     <!--Decrypt Notes Page/Tab-->
+     <div class="page">
+          <h1>Decrypt Notes</h1>
+          <form id="decryptionInput">
+               <span>
+                    <p>Note Password: <input type="password" placeholder="Lorem ipsum"/></p>
+               </span>
+          </form>
+          <input type="button" value="SUBMIT" onclick="decryptNotes();"/>
+          <div id="noteDisplay">
+
+          </div>
+     </div>
+     <!--Credits/Info-->
+     <div class="page">
+          <h1>Credits/Info</h1>
+          <img src="favicon.png" width="64" height="64" class="center"/>
+          <p>Written by Finn Robinson, starting on 10/09/2020. Based on a web-app written for Year-10 Digital Technology. This full
+               rewrite is for AS 91637. This web-app is designed to keep notes locally and password-encrypted. This is superior to most built-in
+               notekeeping applications (e.g. Sticky Notes or Notepad on Windows based systems), since they are unencrypted
+               by default.
+          </p>
+          <break></break>
+          <p>CryptoJS library has been used for encryption and 
+               decryption of these notes. Since they are hosted on the user's 
+               computer and use private keys decided by them, these notes are fairly susceptible to brute forcing,
+               although their security is also dependent on password complexity.
+          </p>
+          <p>SIDENOTE: I just added this page to pad out the navbar. I never really expected anyone to actually read it. Ahoy there!</p>
+     </div>
+     <div class="popup">
+     </div>
+</body>
+</html>
