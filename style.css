@@ -27,7 +27,7 @@ h1,p,input,textarea{
      font-family: 'DOS VGA 437';
      color:var(--main-font-colour);
      display:inline-block;
-     text-shadow: 2px 0px rgba(255,90,150,0.1),-2px 0px rgba(90,150,255,0.7);
+     /*text-shadow: 2px 0px rgba(255,90,150,0.1),-2px 0px rgba(90,150,255,0.7);*/
 }
 input,textarea{
      background-color:rgba(0,0,0,0);
@@ -95,11 +95,13 @@ break:hover{
 }
 .popup{
      position:absolute;
-     width:30%;
-     height:30%;
+     width:max(300px,30vw);
+     height:max(250px,30vh);
+     min-height:200px;
      background-color:brown;
-     left:35%;
-     top:35%;
+     left:calc(calc(100vw - max(300px,30vw))/2);
+     /*Formula for finding distance from left or top = (screen width or height - object width or height) /2*/
+     top:calc(calc(100vh - max(300px,30vh))/2);
      display:none;
 }
 .noteDisplayBox{
