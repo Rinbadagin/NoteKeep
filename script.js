@@ -1,5 +1,5 @@
 var noteArray = [];
-var themeIndex = 0;
+var themeKey = "default";
 function setPage(index){
      //Loops through elements with the page class
      //and sets their visibility to none if they don't match the index set
@@ -130,7 +130,7 @@ function deleteNote(index){
 //Saves the note array and theme index to localstorage
 function saveAll(){
      localStorage.setItem('notes', JSON.stringify(noteArray));
-     localStorage.setItem('themeIndex', JSON.stringify(themeIndex));
+     localStorage.setItem('themeKey', JSON.stringify(themeKey));
 }
 //Loads notes and selected theme
 function loadAll(){
@@ -140,25 +140,28 @@ function loadAll(){
      if(rawNotes!=null&&rawNotes!="undefined"&&rawNotes!="") noteArray=JSON.parse(rawNotes);
      else console.log("No notes loaded.");
      //Attempts to load theme index
-     let savedIndex=localStorage.getItem('themeIndex');
-     if(savedIndex!=null&&savedIndex!="undefined"&&savedIndex!="") themeIndex=JSON.parse(savedIndex);
+     let savedIndex=localStorage.getItem('themeKey');
+     if(savedIndex!=null&&savedIndex!="undefined"&&savedIndex!="") themeKey=JSON.parse(savedIndex);
      else console.log("Theme index not loaded.");
-     loadTheme(themeIndex);
+     loadTheme(themeKey);
 }
-//Loads theme from index n
-function loadTheme(index){
-     //logs to console if the index passed to this function is invalid
-     if (index>themes.length) return console.log("Invalid index #"+index);
-
-     //Only runs if above is false, due to return
-     let root = document.documentElement;
-     for (let i=0;i<themes[index].length;i++){
-          let key = themes[index][i].split(":")[0];
-          let value = themes[index][i].split(":")[1];
-          root.style.setProperty(key,value);
+//Loads theme from string key
+function loadTheme(key){
+     for (let i=0;i<themes.length;i++){
+          if(themes[i].key==key){
+               let root = document.documentElement;
+               for(let x=0;x<themes[i].savedDeclarations.length;x++) {
+                    let key = themes[i].getDeclaration(x).split(":")[0];
+                    let value = themes[i].getDeclaration(x).split(":")[1];
+                    root.style.setProperty(key,value);
+               }
+               themeKey=key;
+               saveAll();
+               return;
+          }
      }
-     themeIndex=index;
-     saveAll();
+     //Only runs if passed key is invalid due to return statement
+     console.log("Invalid Key Input: "+key);
 }
 
 //TimeConverter from Shomrat on https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript 

@@ -15,10 +15,12 @@
      <link rel="icon" type="image/png" href="favicon.png">
      <!--
           Imports of AES encryption library (directly below) and google fonts font VT323
+          Alongside Roboto for the Modern theme
      -->
      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha512.js"></script>
      <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
      <!--Header and navbar-->
@@ -80,9 +82,12 @@
           <img src="favicon.png" width="64" height="64" class="center"/>
           <p>Options: </p>
           <break></break>
-          <p>Default: <input type="button" value="SET" onclick="loadTheme(0);"/></p>
-          <p>Dark: <input type="button" value="SET" onclick="loadTheme(1);"/></p>
-          <p>Light: <input type="button" value="SET" onclick="loadTheme(2);"/></p>
+          <p>Default: <input type="button" value="SET" onclick="loadTheme('default');"/></p>
+          <p>Dark: <input type="button" value="SET" onclick="loadTheme('dark');"/></p>
+          <p>Light: <input type="button" value="SET" onclick="loadTheme('light');"/></p>
+          <p>Modern Light: <input type="button" value="SET" onclick="loadTheme('modern_light');"/></p>
+          <p>Modern Dark: <input type="button" value="SET" onclick="loadTheme('modern_dark');"/></p>
+          <p>Modern Default: <input type="button" value="SET" onclick="loadTheme('modern_default');"/></p>
      </div>
      <div class="popup">
      </div>
