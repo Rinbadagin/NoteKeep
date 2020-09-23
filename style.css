@@ -7,14 +7,16 @@ Most variable names and styling here is quite simple or self explanatory
      font-family: 'DOS VGA 437';
      src: url('font/perfect dos vga 437 win.ttf') format('truetype');
 }
-* {/*
-     --main-interactable-colour:darkslateblue;
-     --main-uninteractable-colour:slategray;*/
+*{
+     transition:all 250ms;
+}
+:root{
      --main-interactable-colour:rgba(45,30,60,0.75);
      --main-uninteractable-colour:rgba(0,0,0,0);
+     --main-highlight-colour:yellow;
      --main-font-colour:white;
+     --main-placeholder-colour:darkcyan;
      --main-background-colour:rgba(40,20,30,1);
-     transition:all 250ms;
 }
 body{
      margin:0px;
@@ -75,17 +77,17 @@ textarea{
 h1:hover,p:hover{
      background-color:var(--main-uninteractable-colour);
      cursor:default;
-     color:yellow;
+     color:var(--main-highlight-colour);
 }
 input:hover,textarea:hover{
      background-color:var(--main-interactable-colour);
      cursor:pointer;
 }
 input::placeholder,textarea::placeholder{
-     color:darkcyan;
+     color:var(--main-placeholder-colour);
 }
 input:hover::placeholder,textarea:hover::placeholder{
-     color:yellow;
+     color:var(--main-highlight-colour);
 }
 break:hover{
      cursor:default;
@@ -105,7 +107,7 @@ break:hover{
      display:none;
 }
 .noteDisplayBox{
-     background-color:orangered;
+     background-color:gray;
      margin-top:25px;
 }
 .center {

@@ -9,6 +9,7 @@
      -->
      <link rel="stylesheet" href="style.css" type="text/css">
      <script src="script.js"></script>
+     <script src="theme.js"></script>
      <script src="Note.js"></script>
      <script src="DecryptedNote.js"></script>
      <link rel="icon" type="image/png" href="favicon.png">
@@ -26,6 +27,7 @@
           <input type="button" value="ADD NOTES" onclick="setPage(0);"/>
           <input type="button" value="VIEW NOTES" onclick="setPage(1);"/>
           <input type="button" value="CREDITS/INFO" onclick="setPage(2);"/>
+          <input type="button" value="THEMES" onclick="setPage(3);"/>
      </span>
      <break>═══════════════════════</break>
      <!--Space for the definition of each page/tab-->
@@ -72,6 +74,15 @@
                although their security is also dependent on password complexity.
           </p>
           <p>SIDENOTE: I just added this page to pad out the navbar. I never really expected anyone to actually read it. Ahoy there!</p>
+     </div>
+     <div class="page">
+          <h1>Theme Settings</h1>
+          <img src="favicon.png" width="64" height="64" class="center"/>
+          <p>Options: </p>
+          <break></break>
+          <p>Default: <input type="button" value="SET" onclick="loadTheme(0);"/></p>
+          <p>Dark: <input type="button" value="SET" onclick="loadTheme(1);"/></p>
+          <p>Light: <input type="button" value="SET" onclick="loadTheme(2);"/></p>
      </div>
      <div class="popup">
      </div>

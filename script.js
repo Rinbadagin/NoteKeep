@@ -1,4 +1,5 @@
 var noteArray = [];
+var themeIndex = 0;
 function setPage(index){
      //Loops through elements with the page class
      //and sets their visibility to none if they don't match the index set
@@ -47,7 +48,7 @@ function submitNote(){
           //Makes a new note with the syntax encrypted text, title, and verification value
           let note = new Note(encrypted,encryptedTitle,verification);
           noteArray.push(note);
-          saveNotes();
+          saveAll();
           //Notifies user if no errors have occurred.
           setPopupVisible("green","Note saved.");
           //Resets all input fields
@@ -123,21 +124,44 @@ function decrypt(message,password){
 //Not undoable, since it saves the notes afterward
 function deleteNote(index){
      noteArray.splice(index,1);
-     saveNotes();
+     saveAll();
      decryptNotes();
 }
-//Saves the note array into localstorage
-function saveNotes(){
+//Saves the note array and theme index to localstorage
+function saveAll(){
      localStorage.setItem('notes', JSON.stringify(noteArray));
+     localStorage.setItem('themeIndex', JSON.stringify(themeIndex));
 }
-function loadNotes(){
+//Loads notes and selected theme
+function loadAll(){
      //Loads notes from localstorage and parses them from json, checking if the localstorage values
      //have been initialized
      let rawNotes=localStorage.getItem("notes");
      if(rawNotes!=null&&rawNotes!="undefined"&&rawNotes!="") noteArray=JSON.parse(rawNotes);
      else console.log("No notes loaded.");
+     //Attempts to load theme index
+     let savedIndex=localStorage.getItem('themeIndex');
+     if(savedIndex!=null&&savedIndex!="undefined"&&savedIndex!="") themeIndex=JSON.parse(savedIndex);
+     else console.log("Theme index not loaded.");
+     loadTheme(themeIndex);
 }
-//TimeConverter  Shomrat on https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript 
+//Loads theme from index n
+function loadTheme(index){
+     //logs to console if the index passed to this function is invalid
+     if (index>themes.length) return console.log("Invalid index #"+index);
+
+     //Only runs if above is false, due to return
+     let root = document.documentElement;
+     for (let i=0;i<themes[index].length;i++){
+          let key = themes[index][i].split(":")[0];
+          let value = themes[index][i].split(":")[1];
+          root.style.setProperty(key,value);
+     }
+     themeIndex=index;
+     saveAll();
+}
+
+//TimeConverter from Shomrat on https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript 
 //Converts unix timestamp to date and time
 function timeConverter(UNIX_timestamp){
      var a = new Date(UNIX_timestamp);
@@ -151,7 +175,7 @@ function timeConverter(UNIX_timestamp){
      var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
      return time;
 }
-//Attempts to load notes upon page load
+//Attempts to load notes and theme upon page load
 window.onload=function(){
-     loadNotes();
+     loadAll();
 };
