@@ -1,7 +1,7 @@
 # NoteKeep
-Simple notekeeping webapp developed as a side project for School starting on 12/09/2020
+	Simple notekeeping webapp developed as a side project for School starting on 12/09/2020
 # Main Feature(s)
-Encrypted Notes
-Makes you look like hacker
+	Encrypted Notes
+	Makes you look like a hacker
 # Other
-Feel free to look around, but there isn't much that's interesting around here.
+	Feel free to look around, but there isn't much that's interesting around here.
