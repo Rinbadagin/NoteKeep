@@ -3,6 +3,10 @@
 //Since I updated this with a Theme class that has methods for altering the style,
 //It wouldn't be very difficult to make the entire theme system user customizable
 
+//Sidenote 2: The theme system could allow for two themes to be used at once, with priority for one
+//over the other. This would mean that each colour theme could be used in conjunction with a font
+//theme, instead of having two have multiple versions of each colour theme
+
 class Theme {
      //Constructor allows an array as input alongside a key or title
      //Copies css declarations and saves them in its own array
@@ -36,6 +40,7 @@ class Theme {
           //Adds declaration to saved declarations if that attribute hasn't been added yet
           savedDeclarations.push(declaration);
      }
+     //Returns css declaration from given index if it is valid
      getDeclaration(index){
           if(index>this.savedDeclarations.length) {
                console.log("Invalid getDeclaration: index out of bounds.");
@@ -60,7 +65,7 @@ let themes = [
      "--main-uninteractable-colour:rgba(11,11,11,0.6)",
      "--main-font-colour:white",
      "--main-background-colour:black",
-     "--main-highlight-colour:darkgreen",
+     "--main-highlight-colour:darkslateblue",
      "--main-placeholder-colour:orange",
      "--main-font-type:'DOS VGA 437'"]),
      //Light theme, index 2
@@ -85,7 +90,7 @@ let themes = [
      "--main-uninteractable-colour:rgba(11,11,11,0.6)",
      "--main-font-colour:white",
      "--main-background-colour:black",
-     "--main-highlight-colour:darkgreen",
+     "--main-highlight-colour:darkslateblue",
      "--main-placeholder-colour:orange",
      "--main-font-type:'Roboto'"]),
      new Theme("modern_default",
